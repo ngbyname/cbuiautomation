@@ -6,6 +6,7 @@ public class Driver {
 
     public static void envLevelSetup(){
         if (evnName.equalsIgnoreCase("sit")) {
+
             evnName = "SIT";
         } else if (evnName.equalsIgnoreCase("uat")) {
             evnName = "UAT";
