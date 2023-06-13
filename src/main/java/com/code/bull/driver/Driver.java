@@ -5,7 +5,10 @@ import com.code.bull.commonutils.applicationutils.contants.ApplicationConstant;
 import com.code.bull.commonutils.applicationutils.contants.ConstantUtils;
 import com.code.bull.pagerepository.pagemethods.common.PageCollection;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
 import org.testng.annotations.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -13,13 +16,19 @@ public class Driver {
 
     public static String env = System.getProperty("env");
     public static String browser = null;
+    public static String baseUrl;
     public static ConstantUtils constants = ConstantUtils.getInstance();
     public static PageCollection pages;
-    public static WebDriver driver ;
+    public static WebDriver driver;
 
-   /* private void driver(WebDriver driver){
-        this.driver = driver;
-    }*/
+    /**
+     * This method will return the instance of WebDriver
+     *
+     * @return the driver
+     */
+    public WebDriver getDriver() {
+        return driver;
+    }
 
 
     @BeforeSuite(alwaysRun = true)
@@ -63,6 +72,7 @@ public class Driver {
     private static void envLevelSetup() {
 
         browser = constants.getValue(ApplicationConstant.WEB_BROWSER);
+        baseUrl = constants.getValue(ApplicationConstant.BASE_URL);
 
         if (env.equalsIgnoreCase("sit")) {
             env = "SIT";
@@ -83,6 +93,8 @@ public class Driver {
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
+                    browserCapabilities();
+                    openBaseUrl(baseUrl);
                     break;
 
                 case "firefox":
@@ -102,12 +114,33 @@ public class Driver {
 
     }
 
+    /**
+     * This method is used to initialize all the pages
+     */
     private static void initializePage() {
         try {
             pages = new PageCollection(driver);
         } catch (Exception e) {
             e.getMessage();
         }
+    }
 
+    /**
+     * This method is used to set or customize the Chrome browser
+     */
+    private static void browserCapabilities() {
+        ChromeOptions options = new ChromeOptions();
+        options.setHeadless(false);
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+    }
+
+    /**
+     * This method is used to open your browser
+     *
+     * @param baseUrl the url
+     */
+    private static void openBaseUrl(String baseUrl) {
+        driver.get(baseUrl);
     }
 }
