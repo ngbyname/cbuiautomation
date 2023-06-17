@@ -4,13 +4,12 @@ package com.code.bull.driver;
 import com.code.bull.commonutils.applicationutils.contants.ApplicationConstant;
 import com.code.bull.commonutils.applicationutils.contants.ConstantUtils;
 import com.code.bull.pagerepository.pagemethods.common.PageCollection;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.slf4j.Logger;
 import org.testng.annotations.*;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Driver {
 
@@ -20,6 +19,7 @@ public class Driver {
     public static ConstantUtils constants = ConstantUtils.getInstance();
     public static PageCollection pages;
     public static WebDriver driver;
+    public static StringBuilder assertCheck;
 
     /**
      * This method will return the instance of WebDriver
@@ -44,7 +44,7 @@ public class Driver {
 
     @BeforeMethod(alwaysRun = true)
     public static void methodSetup() {
-
+        assertCheck = new StringBuilder();
     }
 
     @AfterMethod(alwaysRun = true)

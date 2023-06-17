@@ -1,5 +1,6 @@
 package com.code.bull.pagerepository.pagemethods.common;
 
+import com.code.bull.pagerepository.pagemethods.login.LoginPage;
 import org.openqa.selenium.WebDriver;
 
 public class PageCollection {
@@ -8,6 +9,10 @@ public class PageCollection {
 
     public PageCollection(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public LoginPage getLoginPage() {
+        return new LoginPage(driver);
     }
 
 }
