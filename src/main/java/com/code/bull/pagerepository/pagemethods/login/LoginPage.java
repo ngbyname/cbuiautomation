@@ -21,6 +21,7 @@ public class LoginPage extends BasePage {
      * @param userName userName
      */
     public void enterUserName(String userName) throws InterruptedException {
+        commonLib.info("Going to enter username");
         enterText(LoginPageElements.userName, userName);
     }
 
@@ -30,6 +31,23 @@ public class LoginPage extends BasePage {
      * @param userPass userPass
      */
     public void enterUserPass(String userPass) throws InterruptedException {
+        commonLib.info("Going to enter password");
         enterText(LoginPageElements.userPass, userPass);
+    }
+
+    /**
+     * This method will return you the current url
+     *
+     * @return the url
+     */
+    public String getUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    /**
+     * This method is used to click on Login Btn
+     */
+    public void clickLoginBtn() {
+        click(LoginPageElements.loginBtn);
     }
 }

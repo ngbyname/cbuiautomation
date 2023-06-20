@@ -1,8 +1,10 @@
 package com.code.bull.driver;
 
 
+import com.code.bull.commonutils.actions.AssertActions;
 import com.code.bull.commonutils.applicationutils.contants.ApplicationConstant;
 import com.code.bull.commonutils.applicationutils.contants.ConstantUtils;
+import com.code.bull.commonutils.commonLib.CommonLib;
 import com.code.bull.pagerepository.pagemethods.common.PageCollection;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +22,8 @@ public class Driver {
     public static PageCollection pages;
     public static WebDriver driver;
     public static StringBuilder assertCheck;
+    public static final CommonLib commonLib = new CommonLib();
+    public static final AssertActions actions = new AssertActions();
 
     /**
      * This method will return the instance of WebDriver
@@ -130,7 +134,7 @@ public class Driver {
      */
     private static void browserCapabilities() {
         ChromeOptions options = new ChromeOptions();
-        options.setHeadless(false);
+        options.setHeadless(true);
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }

@@ -1,17 +1,27 @@
 package com.code.bull.pagerepository.pagemethods.common;
 
+import com.code.bull.commonutils.applicationutils.contants.ApplicationConstant;
 import com.code.bull.driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class BasePage extends Driver {
 
-    public static WebDriverWait wait;
+    public static Wait<WebDriver> wait = null;
 
     public BasePage(WebDriver driver) {
-        super();
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
+        Driver.driver = driver;
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(constants.getValue(ApplicationConstant.GENERAL_WAIT_IN_SEC))));
     }
 
 
@@ -21,6 +31,7 @@ public class BasePage extends Driver {
      * @param elementLocation the webelement location
      */
     public void click(By elementLocation) {
+        commonLib.info("Going to click on webelement");
         driver.findElement(elementLocation).click();
     }
 
@@ -32,9 +43,11 @@ public class BasePage extends Driver {
      */
     public void enterText(By elementLocation, String text) throws InterruptedException {
         if (isDisplayed(elementLocation)) {
+            commonLib.info("Going to enter text ");
+            driver.findElement(elementLocation).clear();
             driver.findElement(elementLocation).sendKeys(text);
         } else {
-            System.out.println("Element is not visible");
+            commonLib.error("Element is not visible");
         }
     }
 
@@ -45,7 +58,7 @@ public class BasePage extends Driver {
      * @return is visible or not?
      */
     public Boolean isDisplayed(By elementLocation) {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(elementLocation)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocation));
         return driver.findElement(elementLocation).isDisplayed();
     }
 
