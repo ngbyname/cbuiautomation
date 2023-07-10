@@ -8,4 +8,5 @@ public class ApplicationConstant {
     public static final String USER_PASS = "cb.user.pass";
     public static final String USER_INVALID_PASS ="cb.user.invalid.pass";
     public static final String GENERAL_WAIT_IN_SEC = "cb.general.wait.in.seconds";
+
 }

@@ -1,4 +1,4 @@
-package com.code.bull.commonutils.commonLib;
+package com.code.bull.commonutils.commonlib;
 
 import com.code.bull.driver.Driver;
 

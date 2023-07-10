@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
      *
      * @param userName userName
      */
-    public void enterUserName(String userName) throws InterruptedException {
+    public void enterUserName(String userName) {
         commonLib.info("Going to enter username");
         enterText(LoginPageElements.userName, userName);
     }
@@ -30,7 +30,7 @@ public class LoginPage extends BasePage {
      *
      * @param userPass userPass
      */
-    public void enterUserPass(String userPass) throws InterruptedException {
+    public void enterUserPass(String userPass) {
         commonLib.info("Going to enter password");
         enterText(LoginPageElements.userPass, userPass);
     }
@@ -49,5 +49,22 @@ public class LoginPage extends BasePage {
      */
     public void clickLoginBtn() {
         click(LoginPageElements.loginBtn);
+    }
+
+    /**
+     * This method is used to check if invalid msg is present or not
+     */
+    public Boolean isInvalidMsgVisible() throws InterruptedException {
+        hardWait(2);
+        return isDisplayed(LoginPageElements.invalidMsg);
+    }
+
+    /**
+     * This method is used to get invalid msg text
+     *
+     * @return the text
+     */
+    public String getInvalidMsg() {
+        return getText(LoginPageElements.invalidMsg);
     }
 }

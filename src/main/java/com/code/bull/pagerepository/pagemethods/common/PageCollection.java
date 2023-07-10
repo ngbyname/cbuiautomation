@@ -1,5 +1,6 @@
 package com.code.bull.pagerepository.pagemethods.common;
 
+import com.code.bull.pagerepository.pagemethods.dashboard.DashboardPage;
 import com.code.bull.pagerepository.pagemethods.login.LoginPage;
 import org.openqa.selenium.WebDriver;
 
@@ -15,4 +16,7 @@ public class PageCollection {
         return new LoginPage(driver);
     }
 
+    public DashboardPage getDashboardPage() {
+        return new DashboardPage(driver);
+    }
 }

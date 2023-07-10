@@ -4,7 +4,7 @@ package com.code.bull.driver;
 import com.code.bull.commonutils.actions.AssertActions;
 import com.code.bull.commonutils.applicationutils.contants.ApplicationConstant;
 import com.code.bull.commonutils.applicationutils.contants.ConstantUtils;
-import com.code.bull.commonutils.commonLib.CommonLib;
+import com.code.bull.commonutils.commonlib.CommonLib;
 import com.code.bull.pagerepository.pagemethods.common.PageCollection;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -84,12 +84,14 @@ public class Driver {
             env = "UAT";
         } else if (env.equalsIgnoreCase("prod")) {
             env = "PROD";
+        } else {
+            env = "SIT";
         }
 
     }
 
     /**
-     * @param browser
+     * @param browser the browser
      */
     private static void startBrowser(String browser) {
 

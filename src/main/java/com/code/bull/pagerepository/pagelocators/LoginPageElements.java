@@ -7,5 +7,6 @@ public class LoginPageElements {
     public static final By userName = By.xpath("//input[@name='username']");
     public static final By userPass = By.xpath("//input[@name='password']");
     public static final By loginBtn = By.xpath("//button[text()=' Login ']");
+    public static final By invalidMsg = By.xpath("//*[text()='Invalid credentials']");
 
 }
