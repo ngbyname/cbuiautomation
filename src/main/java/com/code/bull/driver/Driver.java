@@ -70,7 +70,6 @@ public class Driver {
     }
 
 
-
     /**
      * This method is used to set the env value in capital
      */
